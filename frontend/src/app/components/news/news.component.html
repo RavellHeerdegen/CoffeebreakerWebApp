@@ -1,0 +1,12 @@
+<div class="container" *ngIf="coffeebreak">
+  <h1>News</h1>
+  <div class= "newsContainer">
+	<div  *ngFor='let news of news'>
+    <h2>{{news.title}}</h2>
+    <h4>{{news.author}}  |  {{news.publishedAt}}</h4>
+    <img src={{news.urlToImage}}>
+    <div>{{news.content}}</div>
+	</div>
+  </div>
+</div>
+

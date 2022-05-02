@@ -1,0 +1,298 @@
+<div class="search-coffeebreak-container">
+  <div class="search-header">
+    <h1 *ngIf="!myBreaks">Coffee Breaks</h1>
+    <h1 *ngIf="myBreaks">My Coffee Breaks</h1>
+    <div class="search-header-filteroptions">
+      <div class="date-filter-button">
+        <mat-form-field class="additionalFilters">
+          <!-- <mat-label></mat-label> -->
+          <mat-select
+            (selectionChange)="onFilterChange($event)"
+            [(value)]="selectedAdditionalFilter"
+          >
+            <mat-select-trigger>
+              <fa-icon [icon]="faSolidFilter"></fa-icon>
+            </mat-select-trigger>
+            <mat-option value="option1">Show only upcoming breaks</mat-option>
+            <mat-option value="option2">Show only gone breaks</mat-option>
+            <mat-option value="option3">Show all breaks</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <button
+        mat-button
+        (click)="changeFiltersClosedState()"
+        class="filter-button"
+        [ngClass]="!myBreaks ? 'filterButtonShown' : 'filterButtonHidden'"
+      >
+        <span style="margin-right: 6px">Filter Options</span>
+        <!-- <img
+          src="assets/img/chevron-right.png"
+          class="search-header-filter-icon"
+          *ngIf="filtersClosed; else elseFilterIcon"
+        /> -->
+        <fa-icon
+          [icon]="faChevronDown"
+          *ngIf="filtersClosed; else elseFilterIcon"
+        ></fa-icon>
+        <ng-template #elseFilterIcon>
+          <fa-icon [icon]="faChevronUp"></fa-icon>
+        </ng-template>
+
+        <!-- <ng-template #elseFilterIcon>
+          <img
+            src="assets/img/chevron-down.png"
+            class="search-header-filter-icon"
+          />
+        </ng-template> -->
+      </button>
+      <div
+        class="search-header-filteroptions-optiontabs"
+        *ngIf="!filtersClosed"
+      >
+        <form
+          class="filters-form"
+          [formGroup]="filtersFormGroup"
+          autocomplete="off"
+        >
+          <div class="filters-row">
+            <div class="input-block">
+              <mat-form-field appearance="outline">
+                <mat-label>Date</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="picker"
+                  formControlName="date"
+                  disabled
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker
+                  #picker
+                  [startAt]="dateOfToday"
+                  disabled="false"
+                ></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div class="input-block">
+              <mat-form-field appearance="outline">
+                <mat-label>From</mat-label>
+                <input
+                  matInput
+                  placeholder="From"
+                  type="time"
+                  step="300"
+                  value=""
+                  formControlName="from"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="input-block">
+              <mat-form-field appearance="outline">
+                <mat-label>To</mat-label>
+                <input
+                  matInput
+                  type="time"
+                  step="300"
+                  formControlName="endTime"
+                  matInput
+                  placeholder="To"
+                  type="time"
+                  value=""
+                  formControlName="to"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="filters-row">
+            <div class="input-block">
+              <mat-form-field appearance="outline">
+                <mat-label>Location</mat-label>
+                <input
+                  matInput
+                  placeholder="Location"
+                  type="text"
+                  value=""
+                  formControlName="location"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="input-block">
+              <mat-form-field appearance="outline">
+                <mat-label>Max. People</mat-label>
+                <input
+                  matInput
+                  placeholder="Max. people"
+                  type="number"
+                  value=""
+                  min="2"
+                  max="5"
+                  formControlName="maxp"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="filters-row">
+            <div class="input-block">
+              <mat-form-field appearance="outline">
+                <mat-label>Type</mat-label>
+                <mat-select
+                  [(value)]="selectedCoffeebreakType"
+                  formControlName="type"
+                >
+                  <mat-option value="option1">All</mat-option>
+                  <mat-option value="option2">Joined</mat-option>
+                  <mat-option value="option3">Not joined</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="input-block">
+              <mat-form-field appearance="outline">
+                <mat-label>Conversation topics</mat-label>
+                <mat-select multiple formControlName="topics">
+                  <mat-option *ngFor="let tag of coffeebreakTags" [value]="tag">
+                    {{ tag.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="filters-row">
+            <button
+              mat-flat-button
+              color="primary"
+              id="filters-apply-button"
+              class="btn btn-success button"
+              (click)="applyFilters(filtersFormGroup.value)"
+            >
+              Apply
+            </button>
+
+            <button
+              mat-flat-button
+              color="accent"
+              id="filters-clearall-button"
+              class="btn btn-success button"
+              (click)="clearFilters()"
+            >
+              Clear all
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Header END -->
+
+  <div class="search-body">
+    <div class="loading-container" *ngIf="loading; else coffeebreaksList">
+      <mat-spinner color="accent" diameter="20"></mat-spinner>
+      <span>Loading</span>
+    </div>
+    <ng-template #coffeebreaksList>
+      <div
+        class="search-body-coffeebreaks"
+        *ngIf="coffeebreaksFiltered.length != 0; else listEmpty"
+      >
+        <ul
+          [ngClass]="
+            filtersClosed
+              ? 'search-body-coffeebreaks-list-big'
+              : 'search-body-coffeebreaks-list-small'
+          "
+          *ngIf="coffeebreaksFiltered.length > 0; else listEmpty"
+        >
+          <li
+            *ngFor="let coffeebreak of coffeebreaksFiltered"
+            (click)="
+              onClick(coffeebreak); changeBackgroundColorIfSelected(coffeebreak)
+            "
+            [ngClass]="
+              selectedListItemID == coffeebreak.id
+                ? 'coffeebreak_list_item_selected'
+                : 'coffeebreak_list_item'
+            "
+          >
+            <button
+              mat-button
+              class="coffeebreak-list-item-button"
+              [class.coffeebreakOver]="
+                coffeebreak.startAt.getTime() < dateOfToday.getTime()
+              "
+            >
+              <div class="coffeebreak-list-item-button-firstline">
+                <span matLine class="coffeebreak-list-item-button-span"
+                  ><b>{{ coffeebreak.title }}</b></span
+                >
+                <span id="usericons-span">
+                  <ng-container
+                    *ngFor="
+                      let number of [].constructor(coffeebreak.maxParticipants);
+                      index as i
+                    "
+                  >
+                    <fa-icon
+                      [icon]="faSolidUser"
+                      [ngClass]="setListItemUserIconClass(coffeebreak, i)"
+                    >
+                    </fa-icon>
+                  </ng-container>
+                </span>
+              </div>
+
+              <div class="coffeebreak-list-item-button-secondline">
+                <fa-icon [icon]="faClock" class="primaryIcons"></fa-icon>
+                <span
+                  *ngIf="coffeebreak.endTime; else notShowEndTime"
+                  matLine
+                  class="coffeebreak-list-item-button-span"
+                >
+                  <small class="coffeebreak-date-span">
+                    {{ coffeebreak.dateIdentifier }},
+                    {{ coffeebreak.startTime }} -
+                    {{ coffeebreak.endTime }}</small
+                  >
+                  <fa-icon
+                    [icon]="faMapMarkerAlt"
+                    class="primaryIcons lightMarginLeft"
+                  ></fa-icon>
+                  <small>{{ coffeebreak.venue }}</small>
+                  <!-- <span class="coffeebreak-breakover-tag">
+                  <small *ngIf="checkIfDeprecated(coffeebreak.endAt)">Break over</small>
+                </span> -->
+                </span>
+                <ng-template #notShowEndTime>
+                  <span matLine class="coffeebreak-list-item-button-span">
+                    <small class="coffeebreak-date-span">
+                      {{ coffeebreak.dateIdentifier }},
+                      {{ coffeebreak.startTime }}
+                    </small>
+                    <fa-icon
+                      [icon]="faMapMarkerAlt"
+                      class="primaryIcons lightMarginLeft"
+                    ></fa-icon>
+                    <small>{{ coffeebreak.venue }}</small>
+                  </span></ng-template
+                >
+              </div>
+            </button>
+          </li>
+        </ul>
+      </div>
+      <ng-template #listEmpty>
+        <div class="no-Items-Found-container">
+          No coffeebreaks found
+        </div>
+      </ng-template>
+    </ng-template>
+  </div>
+</div>

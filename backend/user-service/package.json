@@ -1,0 +1,24 @@
+{
+  "name": "coffeebreaker",
+  "version": "1.0.0",
+  "description": "Web project for lecture Web Application Architecture",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon user-service.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "mariadb": "^2.1.3",
+    "morgan": "^1.9.1",
+    "mysql2": "^2.0.0",
+    "request": "^2.88.0",
+    "sequelize": "^5.21.2",
+    "sequelize-cli": "^5.5.1"
+  }
+}

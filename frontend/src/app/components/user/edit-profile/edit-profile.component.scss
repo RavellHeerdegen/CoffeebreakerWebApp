@@ -1,0 +1,64 @@
+@import "vars";
+
+.container {
+  width: 500px;
+}
+
+.profile-img-container {
+  position: relative;
+  display: inline-block;
+  margin: 30px 0;
+
+  .profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      margin: 0;
+      max-width: none;
+      max-height: none;
+    }
+  }
+  button {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: 0;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    fa-icon {
+      vertical-align: baseline;
+    }
+  }
+}
+
+.center-text {
+  text-align: center;
+  margin-top: 15px;
+  .text-button {
+    color: $primary-color;
+    border: none;
+    cursor: pointer;
+    background-color: $inp-background;
+    display: inline-block;
+  }
+}
+
+.center-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 15px;
+
+  button:not(:last-of-type) {
+    margin-right: 20px;
+  }
+}

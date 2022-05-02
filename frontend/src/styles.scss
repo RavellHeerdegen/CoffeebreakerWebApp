@@ -1,0 +1,120 @@
+@import "vars";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Muli, "Helvetica Neue", sans-serif;
+  font-size: $font-size;
+  font-weight: $weight-regular;
+  color: $font-color;
+  background-color: $grey-background;
+  min-height: 100vh;
+  display: flex;
+  width: 100%;
+
+  app-root {
+    width: 100%;
+  }
+
+  h1 {
+    font-weight: 900;
+    margin: 0;
+  }
+
+  h2 {
+    font-weight: 700;
+    margin: 0;
+  }
+}
+
+app-sidebar {
+  height: 100%;
+}
+
+div.mat-list-item-content {
+  padding: 0 !important;
+}
+
+app-coffeebreaks-view {
+  width: 100%;
+  overflow: hidden;
+}
+
+app-search-coffeebreak mat-list-item {
+  min-height: 90px;
+}
+
+app-search-coffeebreak div[class="mat-list-item-ripple"] {
+  min-height: 90px;
+}
+
+app-search-coffeebreak div[class="mat-list-item-content"] {
+  min-height: 90px;
+}
+
+app-search-coffeebreak [class="mat-button-wrapper"] {
+  width: 100%;
+}
+
+#master {
+  .button {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: $button-letter-spacing;
+    border-radius: 3em;
+  }
+
+  .mat-tab-body-content {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .mat-form-field-wrapper {
+    padding-bottom: 10px;
+  }
+
+  .mat-fab .mat-button-wrapper > * {
+    vertical-align: baseline;
+  }
+
+  .mat-mini-fab .mat-button-wrapper {
+    padding: 0;
+    line-height: normal;
+  }
+
+  .mat-form-field-infix {
+    width: auto;
+  }
+
+  .mat-form-field-underline {
+    display: none;
+  }
+
+  .additionalFilters {
+    .mat-select {
+      padding: 0 12px;
+    }
+
+    .mat-form-field-infix {
+      border: 1px solid rgba($secondary-color, 0.5);
+      border-radius: 3em;
+      min-width: auto;
+    }
+
+    .mat-form-field-wrapper {
+      padding: 0px;
+    }
+
+    .mat-select-trigger {
+      width: 40px;
+    }
+  }
+}

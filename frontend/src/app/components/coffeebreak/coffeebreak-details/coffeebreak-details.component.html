@@ -1,0 +1,88 @@
+<div class="container" *ngIf="coffeebreak">
+  <h2>{{ coffeebreak.title }}</h2>
+  <div class="coffeebreak-info">
+    <div class="coffeebreak-details">
+      <div class="coffeebreak-details-column">
+        <div class="coffeebreak-details-column-row">
+          <fa-icon [icon]="faCalendar"></fa-icon>
+          {{ coffeebreak.dateIdentifier }}
+        </div>
+        <div class="coffeebreak-details-column-row">
+          <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
+          {{ coffeebreak.venue }}
+        </div>
+      </div>
+      <div class="coffeebreak-details-column">
+        <div class="coffeebreak-details-column-row">
+          <fa-icon [icon]="faClock"></fa-icon>
+          {{ coffeebreak.startTime }}
+          <div *ngIf="coffeebreak.endAt != null">
+            <span></span>-<span></span>{{ coffeebreak.endTime }}
+          </div>
+        </div>
+        <div class="coffeebreak-details-column-row">
+          <ng-container
+            *ngFor="
+              let number of [].constructor(coffeebreak.maxParticipants);
+              index as i
+            "
+            ><fa-icon
+              [icon]="faSolidUser"
+              [ngClass]="checkUserIconClass(coffeebreak, i)"
+            >
+            </fa-icon>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="coffeebreak-topics">
+      <p>Conversation Topics</p>
+      <mat-chip-list>
+        <mat-chip
+          color="accent"
+          selected="true"
+          *ngFor="let tag of coffeebreak.tags"
+          >{{ tag.name }}</mat-chip
+        >
+      </mat-chip-list>
+    </div>
+    <div class="coffeebreak-users">
+      <mat-list *ngFor="let user of coffeebreak.users; last as isLast">
+        <mat-divider></mat-divider>
+        <div class="coffeebreak-user">
+          <mat-list-item (click)="openDialog(user)">
+            <div class="profile-img">
+              <img [src]="transform(user)" />
+            </div>
+            <span>{{ user.username }}</span>
+          </mat-list-item>
+        </div>
+        <mat-divider *ngIf="isLast"></mat-divider>
+      </mat-list>
+    </div>
+  </div>
+  <div class="coffeebreak-join-button">
+    <button
+      mat-flat-button
+      *ngIf="
+        !coffeebreak.isJoined &&
+        !(coffeebreak.users.length === coffeebreak.maxParticipants)
+      "
+      color="primary"
+      class="btn btn-success button"
+      (click)="joinCoffeebreak()"
+    >
+      Join
+    </button>
+
+    <button
+      *ngIf="coffeebreak.isJoined"
+      mat-flat-button
+      color="accent"
+      class="btn btn-success button"
+      (click)="unjoinCoffeebreak()"
+    >
+      Unjoin
+    </button>
+  </div>
+</div>

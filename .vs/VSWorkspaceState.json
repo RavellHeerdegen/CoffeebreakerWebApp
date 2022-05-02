@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\backend",
+    "\\frontend",
+    "\\frontend\\src",
+    "\\frontend\\src\\app",
+    "\\frontend\\src\\app\\create-coffeebreak",
+    "\\frontend\\src\\app\\search-coffeebreak",
+    "\\frontend\\src\\app\\user",
+    "\\frontend\\src\\app\\user\\login"
+  ],
+  "SelectedNode": "\\frontend\\src\\app\\search-coffeebreak",
+  "PreviewInSolutionExplorer": false
+}

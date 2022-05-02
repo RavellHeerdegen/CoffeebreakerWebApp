@@ -1,0 +1,71 @@
+@import "vars";
+
+.sidenav-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 35px;
+}
+
+a:visited {
+  color: $font-color;
+  padding: 35px;
+}
+
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav {
+  width: 100%;
+}
+
+.sidebarbody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: start;
+  margin-top: 5vh;
+
+  .sidebaritem {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    a:link {
+      color: $font-color;
+      text-decoration: none;
+      font-weight: $weight-black;
+      font-size: x-large;
+    }
+
+    a:hover {
+      color: $primary-color;
+    }
+
+    a:active {
+      color: $primary-color;
+    }
+
+    .activeSidebarItem {
+      color: $primary-color;
+    }
+  }
+}
+
+.sidebarfooter {
+  margin-top: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  button {
+    font-weight: $weight-semibold;
+  }
+
+  #sidebar-footer-icon {
+    margin-left: 6px;
+  }
+}

@@ -1,0 +1,36 @@
+<div class="coffeebreaks-view-container">
+  <app-search-coffeebreak
+    class="coffeebreaks-view-component"
+    (coffeebreakClicked)="coffeebreakDetailsClicked($event)"
+    [changedCoffeebreakJoined]="changedCoffeebreak"
+  ></app-search-coffeebreak>
+  <div class="coffeebreaks-view-component">
+    <mat-tab-group mat-stretch-tabs>
+      <mat-tab label="Details">
+        <app-coffeebreak-details
+          [coffeebreak]="clickedCoffeebreak"
+          (changeCoffeebreakJoinedFlagEvent)="
+            changeCoffeebreakJoinedFlag($event)
+          "
+        ></app-coffeebreak-details>
+      </mat-tab>
+      <mat-tab label="Messageboard" *ngIf="isJoined">
+        <app-messageboard
+          class="coffeebreaks-message-component"
+          [coffeebreak]="clickedCoffeebreak"
+          [events]="initializeMessagesEvent.asObservable()"
+        ></app-messageboard>
+      </mat-tab>
+      <mat-tab label="News" *ngIf="isJoined">
+        <app-news [coffeebreak]="clickedCoffeebreak"></app-news>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <a
+    mat-fab
+    [routerLink]="['/coffeebreak/create']"
+    color="primary"
+    class="add-button"
+    ><fa-icon [icon]="faPlus"></fa-icon
+  ></a>
+</div>

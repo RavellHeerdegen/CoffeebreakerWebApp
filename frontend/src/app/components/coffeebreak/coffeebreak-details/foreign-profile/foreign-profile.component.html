@@ -1,0 +1,9 @@
+<div class="container">
+  <button mat-button (click)="onNoClick()">
+    <fa-icon [icon]="faTimes"></fa-icon>
+  </button>
+
+  <div mat-dialog-content>
+    <app-profile [userId]="data.user.id"></app-profile>
+  </div>
+</div>

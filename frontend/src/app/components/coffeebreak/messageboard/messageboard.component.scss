@@ -1,0 +1,77 @@
+@import "vars";
+@import "@fortawesome/fontawesome-pro/css/all.css";
+
+#message-input-submit-button {
+  color: white;
+  background-color: $primary-color;
+  display: inline;
+  height: 2.8rem;
+  margin-top: 1rem;
+}
+
+#textarea-full-width {
+  width: 75%;
+}
+
+#message-input-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#message-input-icon {
+  margin: 0% 2%;
+}
+
+#message-button-icon {
+  transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+}
+
+#message-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-top: 20px;
+  margin-bottom: 16px;
+}
+
+.message-card {
+  max-width: 400px;
+  margin: 1rem;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  background-color: $grey-middle;
+}
+
+.message-form-container {
+  margin: 1rem;
+}
+
+.mat-card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-picture-small {
+  width: 2rem;
+  height: 2rem;
+}
+
+.username-container {
+  color: $font-color;
+}
+.timestamp-container {
+  color: $font-color;
+}
+.message-content-container {
+  color: $font-color;
+}
+.own-message-card {
+  background-color: rgb(106, 251, 84, 0.25) !important;
+}
+
+input {
+  width: 85%;
+}

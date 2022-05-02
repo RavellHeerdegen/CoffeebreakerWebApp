@@ -1,0 +1,34 @@
+<div *ngIf="loadedMessages">
+    <div id="message-container">
+        <mat-card class="message-card" *ngFor="let message of messages; let index = index" [ngClass]="{'own-message-card': message.user.username == getCurrentUsername()}">
+            <div class="mat-card-header">
+                <span class="profile-pic-container">
+                    <img class="profile-picture-small" src="assets/img/generic_profile_pic.png" *ngIf="message.user.profilePicture == null">
+                    <img class="profile-picture-small" [src]="transform(index)" *ngIf="message.user.profilePicture != null">
+                </span>
+                <span class="username-container">{{message.user.username}}</span>
+                <span class="timestamp-container" title="{{message.createdAt}}">{{message.createdAtIndicator}}</span>
+            </div>
+            <mat-divider [inset]="true"></mat-divider>
+            <mat-card-content class="message-content-container">
+                {{message.message}}
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="message-form-container">
+        <form>
+            <div id="message-input-container">
+                <div class="editpanel">
+                    <mat-form-field appearance="outline">
+                        <mat-label><i id="message-input-icon" class="far fa-comment"></i> Message</mat-label>
+                        <input id="messageInput" name="messageInput" matInput ngModel placeholder="Write Something..." type="text" [(ngModel)]="messageInput"/>
+                    </mat-form-field>
+                </div>
+                <button id="message-input-submit-button" type="submit" (click)="postNewMessage()" mat-button>
+                    <i id="message-button-icon" class="far fa-reply"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

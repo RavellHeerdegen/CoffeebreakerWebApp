@@ -1,0 +1,109 @@
+<div class="container">
+  <h1>Create New Coffeebreak</h1>
+  <form
+    [formGroup]="coffeebreakForm"
+    (ngSubmit)="createCoffeebreak()"
+    class="form-group"
+  >
+    <div class="filters-row">
+      <div class="input-block">
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <input matInput type="text" formControlName="title" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="filters-row">
+      <div class="input-block">
+        <mat-form-field appearance="outline">
+          <mat-label>Date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="{{ today.toLocaleDateString() }}"
+            formControlName="date"
+            required
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker
+            #picker
+            [startAt]="today"
+            disabled="false"
+          ></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="input-block">
+        <mat-form-field appearance="outline">
+          <mat-label>From</mat-label>
+          <input matInput type="time" formControlName="startTime" required />
+        </mat-form-field>
+      </div>
+
+      <div class="input-block">
+        <mat-form-field appearance="outline">
+          <mat-label>To</mat-label>
+          <input matInput type="time" formControlName="endTime" />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="filters-row">
+      <div class="input-block">
+        <mat-form-field appearance="outline">
+          <mat-label l>Location</mat-label>
+          <input matInput type="text" formControlName="location" required />
+        </mat-form-field>
+      </div>
+
+      <div class="input-block">
+        <mat-form-field appearance="outline">
+          <mat-label>Max. People</mat-label>
+          <input
+            matInput
+            placeholder="2"
+            type="number"
+            min="2"
+            max="5"
+            formControlName="maxParticipants"
+            required
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="filters-row">
+      <div class="input-block">
+        <mat-form-field appearance="outline">
+          <mat-label>Conversation topics</mat-label>
+          <mat-select multiple formControlName="conversationTopics" required>
+            <mat-option *ngFor="let tag of coffeebreakTags" [value]="tag">
+              {{ tag.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <button
+      mat-flat-button
+      color="primary"
+      class="btn btn-success button"
+      [disabled]="!coffeebreakForm.valid"
+    >
+      Create
+    </button>
+    <button
+      mat-flat-button
+      color="accent"
+      [routerLink]="['/coffeebreaks']"
+      class="btn btn-success button"
+    >
+      Cancel
+    </button>
+  </form>
+</div>

@@ -1,0 +1,94 @@
+@import "vars";
+@import "@fortawesome/fontawesome-pro/css/all.css";
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  margin-left: auto;
+  margin-right: 50px;
+  width: 20vw;
+
+  .logo {
+    text-align: center;
+  }
+
+  img {
+    width: 80%;
+  }
+}
+
+.image-top {
+  position: fixed;
+  top: 0;
+  left: 40vw;
+
+  img {
+    width: 25vw;
+    height: auto;
+  }
+
+  p {
+    left: -80%;
+    top: 25%;
+  }
+}
+
+.image-left {
+  position: fixed;
+  bottom: -3vw;
+  left: -6vw;
+
+  img {
+    width: 48vw;
+    height: auto;
+  }
+
+  p {
+    right: -35%;
+    top: 30%;
+  }
+}
+
+p {
+  position: absolute;
+  font-style: italic;
+  font-size: 28px;
+}
+
+.login-form {
+  padding: 30px 0;
+  width: 100%;
+
+  .mat-form-field:not(.mat-focused) & .mat-form-field-label {
+    color: $font-color;
+  }
+}
+
+.login-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .text-button {
+    color: $primary-color;
+    border: none;
+    cursor: pointer;
+    background-color: $inp-background;
+    font-style: italic;
+    margin-bottom: 15px;
+  }
+
+  .sign-up-link {
+    text-align: center;
+    font-style: italic;
+
+    button {
+      display: inline;
+    }
+  }
+}

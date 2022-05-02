@@ -1,0 +1,108 @@
+<!-- TODO: proper styling -->
+<div class="container">
+  <h1>Edit Profile</h1>
+
+  <!-- <img src="assets/img/generic_profile_pic.png" id="profile-img"> -->
+  <div class="profile-img-container">
+    <div class="profile-img">
+      <img [src]="transform()" />
+    </div>
+    <button mat-mini-fab color="primary" (click)="uploader.click()">
+      <fa-icon [icon]="faPlus"></fa-icon>
+    </button>
+  </div>
+  <br />
+  <input
+    hidden
+    #uploader
+    type="file"
+    id="filePicker"
+    (change)="handleFileSelect($event)"
+  />
+
+  <mat-form-field appearance="outline">
+    <mat-label>Username</mat-label>
+    <input
+      matInput
+      placeholder="Username"
+      name="username"
+      ngModel
+      type="text"
+      [(ngModel)]="user.username"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Interest</mat-label>
+    <input
+      matInput
+      placeholder="Interest"
+      name="interests"
+      ngModel
+      type="text"
+      [(ngModel)]="user.interests"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Coffee Type</mat-label>
+    <mat-select [(ngModel)]="user.coffeeType">
+      <mat-option *ngFor="let type of coffeeTypes" [value]="type.value">
+        {{ type.value }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="center-text">
+    <button type="button" class="text-button" (click)="changePassword()">
+      Change Password
+      <fa-icon [icon]="faChevronDown"></fa-icon>
+    </button>
+  </div>
+
+  <div *ngIf="bChangePwd"> 
+    <br />
+    <mat-form-field appearance="outline">
+      <mat-label>New Password</mat-label>
+      <input
+        matInput
+        placeholder="New Password"
+        name="username"
+        ngModel
+        type="password"
+        [(ngModel)]="pwTemp.newPW"
+      />
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Repeat Password</mat-label>
+      <input
+        matInput
+        placeholder="Repeat New Password"
+        name="newPW2"
+        ngModel
+        type="password"
+        [(ngModel)]="pwTemp.newPW2"
+      />
+    </mat-form-field>
+  </div> 
+
+  <div class="center-box">
+    <button
+      mat-flat-button
+      color="primary"
+      class="btn btn-success button"
+      (click)="saveProfile()"
+    >
+      Save
+    </button>
+    <button
+      mat-flat-button
+      color="accent"
+      class="btn btn-success button"
+      (click)="cancel()"
+    >
+      Cancel
+    </button>
+  </div>
+</div>

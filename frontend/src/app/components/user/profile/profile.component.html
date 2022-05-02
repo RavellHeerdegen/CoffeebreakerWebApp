@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="edit-button" *ngIf="userId == null">
+    <h1>Your profile</h1>
+    <button type="button" class="text-button" (click)="editprofile()">
+      Edit
+      <fa-icon [icon]="faEdit"></fa-icon>
+    </button>
+  </div>
+
+  <!-- <img style="display:inherit;" src="assets/img/generic_profile_pic.png" id="sidebar-header-icon"> -->
+  <div *ngIf="user != null" class="profile-img">
+    <img [src]="transform()" />
+  </div>
+
+  <div class="profile-info">
+    <div class="profile-info-detail">
+      <label>Username</label>
+      <br />
+      <fa-icon [icon]="faUser"></fa-icon>
+      <span>{{ user.username }}</span>
+    </div>
+
+    <div class="profile-info-detail">
+      <label>Interest</label>
+      <br />
+      <fa-icon [icon]="faComment"></fa-icon>
+      <span>{{ user.interests }}</span>
+    </div>
+
+    <div class="profile-info-detail">
+      <label>Coffee Type</label>
+      <br />
+      <fa-icon [icon]="faCoffee"></fa-icon>
+      <span>{{ user.coffeeType }}</span>
+    </div>
+  </div>
+</div>

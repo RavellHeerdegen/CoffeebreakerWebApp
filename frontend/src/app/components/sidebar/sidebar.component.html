@@ -1,0 +1,31 @@
+<mat-sidenav-container *ngIf="openSidebar">
+  <mat-sidenav mode="side" opened="openSidebar" role="navigation" disableClose>
+    <div class="sidenav-container">
+      <div>
+        <a [routerLink]="['/coffeebreaks']">
+          <img src="assets/img/logo-horizontal.svg" id="sidebar-header-icon" />
+        </a>
+      </div>
+      <div class="sidebarbody">
+        <ng-container *ngFor="let item of sideBarItems" id="item.id">
+          <div class="sidebaritem">
+            <a
+              [title]="item.title"
+              [routerLink]="[item.webroute]"
+              routerLinkActive="activeSidebarItem"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              {{ item.title }}
+            </a>
+          </div>
+        </ng-container>
+      </div>
+      <div class="sidebarfooter">
+        <button mat-button (click)="logout()">
+          <span>Logout</span>
+          <fa-icon [icon]="faSignOut" id="sidebar-footer-icon"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </mat-sidenav>
+</mat-sidenav-container>

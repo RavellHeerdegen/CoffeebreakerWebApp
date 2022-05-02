@@ -1,0 +1,8 @@
+<div id="master" class="master-container">
+  <div class="sidebar-container" *ngIf="localStorage.getItem('authJWT')">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="content-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

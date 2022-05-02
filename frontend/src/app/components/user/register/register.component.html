@@ -1,0 +1,137 @@
+<div class="container">
+  <div class="image-top">
+    <p>Stop taking your<br />coffee breaks alone...</p>
+    <img src="assets/img/background-login.png" alt="" />
+  </div>
+  <div class="image-left">
+    <p>...and find your<br />coffee buddies...</p>
+    <img src="assets/img/background-login2.png" alt="" />
+  </div>
+  <div class="content">
+    <div class="logo">
+      <img src="assets/img/logo.svg" />
+    </div>
+
+    <div class="register-form">
+      <div *ngIf="registerPhaseSwap">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            placeholder="Username"
+            name="username"
+            ngModel
+            type="text"
+            [(ngModel)]="registerTemp.username"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            placeholder="Password"
+            name="password"
+            ngModel
+            type="password"
+            [(ngModel)]="registerTemp.password"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Repeat Password</mat-label>
+          <input
+            matInput
+            placeholder="Repeat Password"
+            name="password"
+            ngModel
+            type="password"
+            [(ngModel)]="registerTemp.password2"
+            required
+          />
+        </mat-form-field>
+
+        <div class="center-box">
+          <button
+            mat-flat-button
+            color="primary"
+            class="btn btn-success button"
+            (click)="phaseTwo()"
+          >
+            Get Started
+          </button>
+        </div>
+
+        <div class="backToLogin">
+          <button type="button" class="text-button" (click)="backToLogin()">
+            <fa-icon [icon]="faLongArrowLeft"></fa-icon>
+            Login
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="!registerPhaseSwap">
+        <mat-form-field appearance="outline">
+          <mat-label>E-Mail</mat-label>
+          <input
+            matInput
+            placeholder="E-Mail"
+            name="email"
+            ngModel
+            type="text"
+            [(ngModel)]="registerTemp.email"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Interest</mat-label>
+          <input
+            matInput
+            placeholder="Interest"
+            name="interest"
+            ngModel
+            type="text"
+            [(ngModel)]="registerTemp.interest"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Coffee Type</mat-label>
+          <mat-select [(ngModel)]="registerTemp.coffeeType" required>
+            <mat-option *ngFor="let type of coffeeTypes" [value]="type.value">
+              {{ type.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="center-box">
+          <button
+            mat-flat-button
+            color="primary"
+            class="btn btn-success button"
+            (click)="register()"
+          >
+            Sign Up
+          </button>
+          <button
+            mat-flat-button
+            color="accent"
+            class="btn btn-success button"
+            (click)="cancel()"
+          >
+            Back
+          </button>
+        </div>
+        <div class="backToLogin">
+          <button type="button" class="text-button" (click)="backToLogin()">
+            <fa-icon [icon]="faLongArrowLeft"></fa-icon>
+            Login
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

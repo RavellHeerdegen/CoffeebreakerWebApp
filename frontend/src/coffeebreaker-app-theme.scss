@@ -1,0 +1,194 @@
+@import "~@angular/material/theming";
+
+$custom-typography: mat-typography-config(
+  $font-family: "Muli",
+  $headline: mat-typography-level(40px, 48px, 900),
+  $body-1: mat-typography-level(16px, 24px, 400)
+);
+
+// Be sure that you only ever include 'mat-core' mixin once!
+// it should not be included for each theme.
+@include mat-core($custom-typography);
+
+// define a real custom palette (using http://mcg.mbitson.com)
+$brand: (
+  50: #fff2ea,
+  100: #fedecc,
+  200: #fdc8aa,
+  300: #fcb287,
+  400: #fca26e,
+  500: #fb9154,
+  600: #fa894d,
+  700: #fa7e43,
+  800: #f9743a,
+  900: #f86229,
+  A100: #ffffff,
+  A200: #ffffff,
+  A400: #ffdbcf,
+  A700: #ffc8b6,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
+);
+
+$accent: (
+  50: #f3f2f1,
+  100: #e2dddb,
+  200: #cec7c4,
+  300: #bab1ac,
+  400: #aca09a,
+  500: #9d8f88,
+  600: #958780,
+  700: #8b7c75,
+  800: #81726b,
+  900: #6f6058,
+  A100: #fee8dc,
+  A200: #fdc6ab,
+  A400: #ffa375,
+  A700: #ff925c,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
+);
+
+$warn: (
+  50: #fee6e7,
+  100: #fcc0c3,
+  200: #fa969b,
+  300: #f76c72,
+  400: #f64d54,
+  500: #f42d36,
+  600: #f32830,
+  700: #f12229,
+  800: #ef1c22,
+  900: #ec1116,
+  A100: #ffffff,
+  A200: #ffe5e6,
+  A400: #ffb3b4,
+  A700: #ff999b,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
+);
+
+// $foreground: (
+//   50: #e9e9e9,
+//   100: #c8c8c8,
+//   200: #a4a4a4,
+//   300: #7f7f7f,
+//   400: #636363,
+//   500: #484848,
+//   600: #414141,
+//   700: #383838,
+//   800: #303030,
+//   900: #212121,
+//   A100: #f17d7d,
+//   A200: #eb4f4f,
+//   A400: #ff0808,
+//   A700: #ee0000,
+//   contrast: (
+//     50: #000000,
+//     100: #000000,
+//     200: #000000,
+//     300: #ffffff,
+//     400: #ffffff,
+//     500: #ffffff,
+//     600: #ffffff,
+//     700: #ffffff,
+//     800: #ffffff,
+//     900: #ffffff,
+//     A100: #000000,
+//     A200: #ffffff,
+//     A400: #ffffff,
+//     A700: #ffffff
+//   )
+// );
+
+// $background: (
+//   50: #fcfcfc,
+//   100: #f8f8f7,
+//   200: #f4f3f1,
+//   300: #efeeeb,
+//   400: #ebebe7,
+//   500: #e8e7e3,
+//   600: #e5e4e0,
+//   700: #e2e0dc,
+//   800: #deddd8,
+//   900: #d8d7d0,
+//   A100: #ffffff,
+//   A200: #ffffff,
+//   A400: #ffffff,
+//   A700: #ffffff,
+//   contrast: (
+//     50: #000000,
+//     100: #000000,
+//     200: #000000,
+//     300: #000000,
+//     400: #000000,
+//     500: #000000,
+//     600: #000000,
+//     700: #000000,
+//     800: #000000,
+//     900: #000000,
+//     A100: #000000,
+//     A200: #000000,
+//     A400: #000000,
+//     A700: #000000
+//   )
+// );
+
+// mandatory stuff for theming
+$coffeebreaker-palette-primary: mat-palette($brand);
+$coffeebreaker-palette-accent: mat-palette($accent);
+$coffeebreaker-palette-warn: mat-palette($warn);
+// $coffeebreaker-palette-foreground: mat-palette($foreground);
+// $coffeebreaker-palette-background: mat-palette($background);
+
+// include the custom theme components into a theme object
+$coffeebreaker-theme: mat-light-theme(
+  $coffeebreaker-palette-primary,
+  $coffeebreaker-palette-accent,
+  $coffeebreaker-palette-warn
+);
+
+// include the custom theme object into the angular material theme
+@include angular-material-theme($coffeebreaker-theme);
